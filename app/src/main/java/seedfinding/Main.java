@@ -3,11 +3,33 @@
  */
 package seedfinding;
 
+import kaptainwutax.biomeutils.source.OverworldBiomeSource;
+import kaptainwutax.featureutils.structure.SwampHut;
+import kaptainwutax.seedutils.mc.ChunkRand;
+import kaptainwutax.seedutils.mc.MCVersion;
+import kaptainwutax.seedutils.mc.pos.CPos;
+
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
+        SwampHut swampHut = new SwampHut(MCVersion.v1_16_2);
+        ChunkRand chunkRand = new ChunkRand();
+        for (int structureSeed = 0; structureSeed < 1L <<48; structureSeed++) {
+            CPos hut1 = swampHut.getInRegion(structureSeed, 0, 0, chunkRand);
+            CPos hut2 = swampHut.getInRegion(structureSeed, 0, 1, chunkRand);
+            CPos hut3 = swampHut.getInRegion(structureSeed, 1, 0, chunkRand);
+            CPos hut4 = swampHut.getInRegion(structureSeed, 0, 1, chunkRand);
 
-
-
-
+        }
+        ArrayList<Long> structureSeeds=new ArrayList<>();
+        for (Long structureSeed : structureSeeds) {
+            CPos hut1 = swampHut.getInRegion(structureSeed, 0, 0, chunkRand);
+            for (long biomeSeed = 0; biomeSeed < 1<<16; biomeSeed++) {
+                OverworldBiomeSource overworldBiomeSource = new OverworldBiomeSource(MCVersion.v1_16_2, biomeSeed<<48|structureSeed);
+                if(!swampHut.canSpawn(hut1.getX(), hut1.getZ(), overworldBiomeSource)) continue;
+                System.out.println();
+            }
+        }
     }
 }

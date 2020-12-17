@@ -36,7 +36,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'seedfinding.App'
+    mainClass = 'seedfinding.Main'
 }
 
 tasks.named('test') {

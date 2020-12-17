@@ -28,7 +28,7 @@ public class Main {
             for (long biomeSeed = 0; biomeSeed < 1<<16; biomeSeed++) {
                 OverworldBiomeSource overworldBiomeSource = new OverworldBiomeSource(MCVersion.v1_16_2, biomeSeed<<48|structureSeed);
                 if(!swampHut.canSpawn(hut1.getX(), hut1.getZ(), overworldBiomeSource)) continue;
-                System.out.println();
+                System.out.println(biomeSeed<<48|structureSeed);
             }
         }
     }
